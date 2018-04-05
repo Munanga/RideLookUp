@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}upload{% endblock %}
+
+{% block body %}
+<h2>This is where you can create and Vehicle data</h2>
+    <form method="post" action="{% url 'create' %}" enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="create" class="btn btn-primary">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}search{% endblock %}
+
+{% block body %}
+    <h2>Find your hot Ride!</h2>
+    <form method="get" action="{% url 'search' %}">
+        Find:<input type="text" placeholder="search here..." name="q">
+        <input type="submit" name="search" class="btn btn-primary">
+    </form>
+
+    {% if query %}
+        {% if not check %}
+             <p>Sorry no search results for {{query}}!</p>
+        {% else %}
+            {% for results in q_set %}
+                <p>Showing results for {{query}}</p>
+                <img src="{{MEDIA_URL}}{{results.snapshot}}" alt="car Image" height="350" width="350"><br>
+                      <b>Name:</b>{{results.name}}<br>
+                      <b>Model:</b>{{results.model}}<br>
+                      <b>Mileage:</b>{{results.mileage}}<br>
+                      <b>Price:</b>{{results.price}}<br>
+            {% endfor %}
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}
