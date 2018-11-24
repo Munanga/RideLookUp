@@ -13,13 +13,16 @@
         {% if not check %}
              <p>Sorry no search results for {{query}}!</p>
         {% else %}
+            <p>Showing results for {{query}}</p>
             {% for results in q_set %}
-                <p>Showing results for {{query}}</p>
                 <img src="{{MEDIA_URL}}{{results.snapshot}}" alt="car Image" height="350" width="350"><br>
                       <b>Name:</b>{{results.name}}<br>
                       <b>Model:</b>{{results.model}}<br>
                       <b>Mileage:</b>{{results.mileage}}<br>
                       <b>Price:</b>{{results.price}}<br>
+                    <form action="/delete/{{results.id}}/" method="post">{% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form><br>
             {% endfor %}
         {% endif %}
 
