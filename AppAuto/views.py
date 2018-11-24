@@ -50,6 +50,11 @@ class contact(CreateView):
 class about(ListView):
     template_name = 'about.html'
     queryset = Vehicle.objects.all()
+    
+def delete(request,url_id):
+    item_to_delete = Vehicle.objects.get(id=url_id)
+    item_to_delete.delete()
+    return HttpResponseRedirect('/search/')
 
 
 
