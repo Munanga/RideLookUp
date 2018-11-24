@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^$',views.index.as_view(),name='index'),
     url(r'^search/$',views.search, name='search'),
     url(r'^create/$',views.create, name='create'),
-    url(r'^delete(?P<url_id>[0-9]+)/$',views.delete,name='delete'),
+    url(r'^delete/(?P<url_id>[0-9]+)/$',views.delete,name='delete'),
     url(r'^about/$',views.about.as_view(),name='about'),
     url(r'^contact/$',views.contact.as_view(),name='contact'),
 ]
