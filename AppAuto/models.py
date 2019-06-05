@@ -1,8 +1,7 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
-#from django.core.urlresolvers import reverse
+from django.urls import reverse
 
-# Create your models here.
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=45)
@@ -17,11 +16,11 @@ class Vehicle(models.Model):
 #  def get_absolute_url(self):
 #       return reverse('index')
 
+
 class ContactModel(models.Model):
     name = models.CharField(max_length=45)
     email = models.EmailField()
     text = models.TextField()
-
 
     def __str__(self):
         return self.name

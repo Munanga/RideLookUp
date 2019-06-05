@@ -4,12 +4,14 @@ from django.db.models import Q
 from AppAuto.models import Vehicle
 from AppAuto.forms import VehicleModelForm,ContactForm
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 
 # Create your views here.
 
 # class Index(ListView):
 #     template_name = 'index.html'
 #     context_object_name = 'Vehicles'
+
 
 def create(request):
     if request.method == "POST":
@@ -18,7 +20,7 @@ def create(request):
             form.save()
             return HttpResponseRedirect('/')
     else:
-        form = VehicleModelForm
+        form = VehicleModelForm()
     context = {"form":form}
     return render(request,'create.html',context)
 
@@ -38,25 +40,49 @@ def search(request):
 
     return render(request,'search.html',context)
 
-class index(ListView):
+
+class Index(ListView):
     template_name = 'index.html'
     queryset = Vehicle.objects.all()
     context_object_name = 'data_set'
 
-class contact(CreateView):
-    template_name = 'contact.html'
-    form_class = ContactForm
+
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact_name = request.POST.get('name', '')
+            contact_email = request.POST.get('email', '')
+            form_content = request.POST.get('text', '')
+
+            send_mail(
+                'Contact',
+                form_content,
+                contact_email,
+                ['jackslaighter@gmail.com'],
+                fail_silently=False,
+            )
+            return HttpResponseRedirect('/')
+    else:
+        form = ContactForm()
+    context = {'form':form}
+    return render(request, 'contact.html', context)
+
 
 class about(ListView):
     template_name = 'about.html'
     queryset = Vehicle.objects.all()
-    
+
+
 def delete(request,url_id):
     item_to_delete = Vehicle.objects.get(id=url_id)
     item_to_delete.delete()
     return HttpResponseRedirect('/search/')
 
 
+class bob(ListView):
+    template_name = 'bob.html'
+    queryset = Vehicle.objects.all()
 
 
 

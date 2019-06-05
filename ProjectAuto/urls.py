@@ -22,13 +22,16 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.index.as_view(),name='index'),
+    url(r'^$',views.Index.as_view(),name='index'),
     url(r'^search/$',views.search, name='search'),
     url(r'^create/$',views.create, name='create'),
     url(r'^delete/(?P<url_id>[0-9]+)/$',views.delete,name='delete'),
     url(r'^about/$',views.about.as_view(),name='about'),
-    url(r'^contact/$',views.contact.as_view(),name='contact'),
+    url(r'^contact/$',views.contact,name='contact'),
+    url(r'^bob/$',views.bob.as_view(),name='bob'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    import debug_toolbar
+    urlpatterns = [ url(r'^__debug__/', include(debug_toolbar.urls)),] + urlpatterns

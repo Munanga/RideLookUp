@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container">
     <div class="jumbotron">
-        <h1>AUTO<span id="run">RUN</span></h1><h3>where better meets best!!</h3>
-        {% include 'navbar.html' %}
+        <div class="container">
+          <h1 class="display-3" align="center">Ride<span id="run">LookUp</span></h1>
+            <p><h3 id="motto" align="center" >Best prices region wide!</h3></p>
+          <p>{% include 'navbar.html' %}</p>
+        </div>
     </div>
+
     {% block body %}
 
+
     {% endblock %}
-</div>
+
 
 </body>
+
+<hr>
+<footer class="container">
+  <p>© RideLookUp 2019</p>
+</footer>
 </html>

@@ -3,12 +3,14 @@
 {% block title %}homepage{% endblock %}
 
 {% block body %}
-<h2>Welcome Home</h2>
+    <div class="container">
+    <h2>Welcome Home</h2>
         <p>We have the following rides for sale.</p>
         <div class="row">
         {% for rides in data_set %}
             {% if rides %}
-                    <div class="col-md-4">
+
+                    <div class="col-md-4" >
                     <img src="{{MEDIA_URL}}{{rides.snapshot}}" alt="car Image" height="350" width="350"><br>
                       <b>Name:</b>{{rides.name}}<br>
                       <b>Model:</b>{{rides.model}}<br>
@@ -20,4 +22,6 @@
             {% endif %}
         {% endfor %}
         </div>
+    </div>
+
 {% endblock %}

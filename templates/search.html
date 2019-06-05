@@ -1,31 +1,42 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}search{% endblock %}
 
 {% block body %}
-    <h2>Find your hot Ride!</h2>
-    <form method="get" action="{% url 'search' %}">
-        Find:<input type="text" placeholder="search here..." name="q">
-        <input type="submit" name="search" class="btn btn-primary">
-    </form>
 
-    {% if query %}
-        {% if not check %}
-             <p>Sorry no search results for {{query}}!</p>
-        {% else %}
-            <p>Showing results for {{query}}</p>
-            {% for results in q_set %}
-                <img src="{{MEDIA_URL}}{{results.snapshot}}" alt="car Image" height="350" width="350"><br>
-                      <b>Name:</b>{{results.name}}<br>
-                      <b>Model:</b>{{results.model}}<br>
-                      <b>Mileage:</b>{{results.mileage}}<br>
-                      <b>Price:</b>{{results.price}}<br>
-                    <form action="/delete/{{results.id}}/" method="post">{% csrf_token %}
-                        <input type="submit" value="Delete" class="btn btn-danger">
-                    </form><br>
-            {% endfor %}
+    <div class="container">
+        <div align="center">
+            <h2>Find your hot ride!</h2>
+            <form method="get" action="{% url 'search' %}">
+                Search  <input type="text" placeholder="search here..." name="q">
+                <input type="submit" name="search" class="btn btn-primary">
+            </form>
+        </div>
+
+        {% if query %}
+            {% if not check %}
+                 <p>Sorry no search results for "<b>{{query}}</b>"</p>
+            {% else %}
+                <p>Showing results for "<b>{{query}}</b>"</p>
+                <div class="row">
+                {% for results in q_set %}
+
+                    <div class="col-md-4" >
+                    <img src="{{MEDIA_URL}}{{results.snapshot}}" alt="car Image" height="350" width="350"><br>
+                          <b>Name:</b>{{results.name}}<br>
+                          <b>Model:</b>{{results.model}}<br>
+                          <b>Mileage:</b>{{results.mileage}}<br>
+                          <b>Price:</b>{{results.price}}<br>
+                        <form action="/delete/{{results.id}}/" method="post">{% csrf_token %}
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form><br>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+
         {% endif %}
-
-    {% endif %}
+    </div>
 
 {% endblock %}
