@@ -3,7 +3,7 @@ Django Project that allows users to enter records (including a picture) about a 
 
 ## Images may be subject to copyright!
 
-![alt text](https://raw.githubusercontent.com/Munanga/AutoRun/master/screenShots/newHome.JPG) 
+![alt text](https://raw.githubusercontent.com/Munanga/AutoRun/master/screenShots/newHome.png) 
 
 ---
 ![alt text](https://raw.githubusercontent.com/Munanga/AutoRun/master/screenShots/newCreate.JPG)
