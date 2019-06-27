@@ -8,12 +8,14 @@
 {% block body %}
     <div class="container">
         <h2>Contact us below:</h2>
-        <div class="form-group col-lg-4">
+
             <form method="post" action="{% url 'contact' %}">{% csrf_token %}
+                <div class="form-group">
                 {{form|crispy}}
                 <input type="submit" class="btn btn-primary" value="Send">
+                </div>
             </form>
-        </div>
+
 
     </div>
 {% endblock %}
