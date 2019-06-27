@@ -80,6 +80,14 @@ def delete(request,url_id):
     return HttpResponseRedirect('/search/')
 
 
+def purchase(request,url_id):
+    item_to_purchase = Vehicle.objects.get(id=url_id)
+    context = {"item_to_purchase":item_to_purchase}
+    return render(request,'purchase_car.html',context)
+
+def email_sent(request):
+    return render(request,'email_sent.html',{})
+
 class bob(ListView):
     template_name = 'bob.html'
     queryset = Vehicle.objects.all()

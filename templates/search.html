@@ -7,17 +7,25 @@
 
     <div class="container">
         <div align="center">
-            <h2>Find your hot ride!</h2>
-            <form method="get" action="{% url 'search' %}">
-                Search  <input type="text" placeholder="search here..." name="q">
-                <input type="submit" name="search" class="btn btn-primary">
-            </form>
+            <h2>Find your next ride!</h2>
+
+                <form method="get" action="{% url 'search' %}">
+                       <div class="form-group col-lg-4">
+                            <p>Search  <input type="text" class="form-control" placeholder="search here..." name="q"></p>
+                            <input type="submit" name="search" class="btn btn-primary">
+                       </div>
+
+
+                </form>
+
         </div>
 
         {% if query %}
             {% if not check %}
                  <p>Sorry no search results for "<b>{{query}}</b>"</p>
             {% else %}
+
+
                 <p>Showing results for "<b>{{query}}</b>"</p>
                 <div class="row">
                 {% for results in q_set %}
@@ -33,7 +41,10 @@
                         </form><br>
                     </div>
                 {% endfor %}
+
                 </div>
+
+
             {% endif %}
 
         {% endif %}

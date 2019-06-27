@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}purchase car{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>Contact seller about this car</h2>
+
+        <div class="row">
+
+        <div class="col-md-8">
+            <img src="{{MEDIA_URL}}{{item_to_purchase.snapshot}}" alt="car Image" height="650" width="748">
+        </div>
+        <div class="col-md-4">
+            <div class="purchase-font">
+                <b>Name:</b>{{item_to_purchase.name}}<br>
+                <b>Model:</b>{{item_to_purchase.model}}<br>
+                <b>Mileage:</b>{{item_to_purchase.mileage}}<br>
+                <b>Price:</b>{{item_to_purchase.price}}<br>
+
+                <br>Get in touch with seller
+            </div>
+
+            <form method="post" action="{% url 'email_sent' %}">
+                {% csrf_token %}
+                <p><input type="email" class="form-control" placeholder="enter email" id="exampleInputEmail1"></p>
+                <p><input type="submit" class="btn btn-primary" value="Send email"></p>
+
+            </form>
+        </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block afterBody %}
+    <hr>
+    <div class="footer">
+       <footer class="container">
+           <p>© RideLookUp 2019</p>
+        </footer>
+    </div>
+{% endblock %}

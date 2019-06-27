@@ -4,19 +4,23 @@
 
 {% block body %}
     <div class="container">
-    <h2>Welcome Home</h2>
+    <h2>Welcome! </h2>
         <p>We have the following rides for sale.</p>
+
         <div class="row">
+
         {% for rides in data_set %}
             {% if rides %}
 
-                    <div class="col-md-4" >
-                    <img src="{{MEDIA_URL}}{{rides.snapshot}}" alt="car Image" height="350" width="350"><br>
-                      <b>Name:</b>{{rides.name}}<br>
-                      <b>Model:</b>{{rides.model}}<br>
-                      <b>Mileage:</b>{{rides.mileage}}<br>
-                      <b>Price:</b>{{rides.price}}
+                <div class="col-md-4" >
+                    <div class="vehicle-model">
+                        <a href="{% url 'purchase' rides.id %}"><img src="{{MEDIA_URL}}{{rides.snapshot}}" alt="car Image" height="350" width="350" id="car_image"><br></a>
+                        <b>Name:</b>{{rides.name}}<br>
+                        <b>Model:</b>{{rides.model}}<br>
+                        <b>Mileage:</b>{{rides.mileage}}<br>
+                        <b>Price:</b>{{rides.price}}
                     </div>
+                </div>
             {% else %}
                 <p>Nothing to display yet</p>
             {% endif %}
@@ -24,4 +28,14 @@
         </div>
     </div>
 
+{% endblock %}
+
+
+{% block afterBody %}
+    <hr>
+    <div class="footer">
+       <footer class="container">
+           <p>© RideLookUp 2019</p>
+        </footer>
+    </div>
 {% endblock %}
