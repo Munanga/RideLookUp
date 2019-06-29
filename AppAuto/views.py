@@ -5,6 +5,7 @@ from AppAuto.models import Vehicle
 from AppAuto.forms import VehicleModelForm,ContactForm
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -37,7 +38,6 @@ def search(request):
             check = queryset.exists()
 
     context = {"query":query,"q_set":queryset,"check":check}
-
     return render(request,'search.html',context)
 
 
@@ -81,12 +81,15 @@ def delete(request,url_id):
 
 
 def purchase(request,url_id):
+    # i = get_object_or_404(id=url_id)
     item_to_purchase = Vehicle.objects.get(id=url_id)
     context = {"item_to_purchase":item_to_purchase}
     return render(request,'purchase_car.html',context)
 
+
 def email_sent(request):
     return render(request,'email_sent.html',{})
+
 
 class bob(ListView):
     template_name = 'bob.html'
