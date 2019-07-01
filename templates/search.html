@@ -9,7 +9,7 @@
         <div align="center">
             <h2>Find your next ride!</h2>
 
-                <form method="get" action="{% url 'search' %}">
+                <form method="get" action="{% url 'AppAuto:search' %}">
                        <div class="form-group col-lg-4">
                             <p>Search  <input type="text" class="form-control" placeholder="search here..." name="q"></p>
                             <input type="submit" name="search" class="btn btn-primary">
@@ -36,7 +36,7 @@
                           <b>Model:</b>{{results.model}}<br>
                           <b>Mileage:</b>{{results.mileage}}<br>
                           <b>Price:</b>{{results.price}}<br>
-                        <form action="/delete/{{results.id}}/" method="post">{% csrf_token %}
+                        <form action="{% url 'AppAuto:delete' results.id %}" method="post">{% csrf_token %}
                             <input type="submit" value="Delete" class="btn btn-danger">
                         </form><br>
                     </div>

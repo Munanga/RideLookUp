@@ -1,11 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views.generic import ListView,CreateView
 from django.db.models import Q
 from AppAuto.models import Vehicle
 from AppAuto.forms import VehicleModelForm,ContactForm
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from AppAuto import serializers
+from rest_framework import status
+
+
+@api_view(['GET','POST'])
+def vehicle_list(request):
+    if request.method == 'GET':
+        queryset = Vehicle.objects.all()
+        serialize = serializers.VehicleSerializer(queryset,many=True)
+        return Response(serialize.data)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 # Create your views here.
 
@@ -37,7 +53,7 @@ def search(request):
                                               )
             check = queryset.exists()
 
-    context = {"query":query,"q_set":queryset,"check":check}
+    context = {"query": query, "q_set": queryset, "check": check}
     return render(request,'search.html',context)
 
 
@@ -74,13 +90,13 @@ class about(ListView):
     queryset = Vehicle.objects.all()
 
 
-def delete(request,url_id):
+def delete(request, url_id):
     item_to_delete = Vehicle.objects.get(id=url_id)
     item_to_delete.delete()
-    return HttpResponseRedirect('/search/')
+    return HttpResponseRedirect('/')
 
 
-def purchase(request,url_id):
+def purchase(request, url_id):
     # i = get_object_or_404(id=url_id)
     item_to_purchase = Vehicle.objects.get(id=url_id)
     context = {"item_to_purchase":item_to_purchase}
@@ -94,6 +110,8 @@ def email_sent(request):
 class bob(ListView):
     template_name = 'bob.html'
     queryset = Vehicle.objects.all()
+
+
 
 
 

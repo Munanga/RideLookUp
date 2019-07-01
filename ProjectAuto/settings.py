@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'djmoney',
     'crispy_forms',
     'debug_toolbar',
+    'rest_framework',
     'AppAuto',
 ]
 

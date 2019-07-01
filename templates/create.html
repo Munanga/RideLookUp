@@ -6,10 +6,12 @@
 {% block body %}
     <div class="container">
     <h2>Enter vehicle info</h2>
-        <form method="post" action="{% url 'create' %}" enctype="multipart/form-data">{% csrf_token %}
+        <div class="form-control">
+        <form method="post" action="{% url 'AppAuto:create' %}" enctype="multipart/form-data">{% csrf_token %}
             {{form|crispy}}<br>
             <input type="submit" value="create" class="btn btn-primary">
         </form>
+        </div>
     </div>
 
 {% endblock %}
