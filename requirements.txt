@@ -83,7 +83,7 @@ pilkit==2.0
 Pillow==6.0.0
 prometheus-client==0.6.0
 prompt-toolkit==2.0.9
-psutil==5.6.2
+psutil==5.6.6
 psycopg2==2.7.3.2
 py-moneyed==0.7.0
 pycodestyle==2.5.0
