@@ -14,7 +14,7 @@ cryptography==2.7
 decorator==4.4.0
 defusedxml==0.6.0
 dj-database-url==0.4.2
-Django==2.2.10
+Django==2.2.20
 django-appconf==1.0.2
 django-braces==1.10.0
 django-classy-tags==0.8.0
