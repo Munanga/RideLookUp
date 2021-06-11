@@ -132,7 +132,7 @@ Unidecode==0.4.21
 urllib3==1.24.2
 wcwidth==0.1.7
 webencodings==0.5.1
-websockets==3.2
+websockets==9.1
 win-inet-pton==1.1.0
 wincertstore==0.2
 wrapt==1.11.1
